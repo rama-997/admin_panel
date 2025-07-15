@@ -19,8 +19,8 @@ class AuthController {
             const token = await jwt.sign({
                 username,
                 password
-            }, JWT_SECRET,{expiresIn: '1m'})
-            res.cookie('token', token,{maxAge: 2 * 60 * 1000})
+            }, JWT_SECRET,{expiresIn: '5m'})
+            res.cookie('token', token,{maxAge: 10 * 60 * 1000})
             res.redirect('/users')
         } else {
             res.render('login', {error: 'Incorrect username or password'})
