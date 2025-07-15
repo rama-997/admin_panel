@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= user._id ? 'Change' : 'Add' %> user</title>
+</head>
+<body>
+<div style="text-align: center">
+<h1><%= user._id ? 'Change' : 'Add' %> user</h1>
+
+<% if (errors.length) { %>
+    <ul style="color:red">
+        <% errors.forEach(err => { %>
+            <li><%= err.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+<form method="POST" action="<%= action %>">
+    <label>Login:</label><br />
+    <input type="text" name="username" value="<%= user.username || '' %>" required /><br />
+
+    <label>Password:</label><br />
+    <input type="password" name="password" value="<%= user.password || '' %>" required/><br />
+
+    <label>Name:</label><br />
+    <input type="text" name="first_name" value="<%= user.first_name || '' %>" required/><br />
+
+    <label>Last name:</label><br />
+    <input type="text" name="last_name" value="<%= user.last_name || '' %>" required /><br />
+
+    <label>Gender:</label><br />
+    <select name="gender" required>
+        <option value="">-- choose --</option>
+        <option value="male" <%= user.gender === 'male' ? 'selected' : '' %>>Male</option>
+        <option value="female" <%= user.gender === 'female' ? 'selected' : '' %>>Female</option>
+    </select><br />
+
+    <label>Date of birth:</label><br />
+    <input type="date" name="birthdate"
+           required
+           value="<%= user.birthdate ? new Date(user.birthdate).toISOString().split('T')[0] : '' %>" /><br /><br />
+
+    <button type="submit"><%= user._id ? 'Save' : 'Add' %></button>
+</form>
+
+<br />
+<a href="/users">Go back to the list</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+<div style="display: flex; height: 100vh; align-items: center; justify-content: center; flex-direction: column ">
+<h1>Admin login</h1>
+<% if (typeof error !== 'undefined') { %>
+    <p style="color:red;"><%= error %></p>
+<% } %>
+<form method="POST" action="/login">
+    <input type="text" name="username" placeholder="username..." required />
+    <input type="password" name="password" placeholder="password..." required />
+    <button type="submit">Sign In</button>
+</form>
+</div>
+</body>
+</html>
